@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import SAMKeychain
+import LocalAuthentication
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
@@ -169,6 +170,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
         }
         
+        let touchIDAction = UIAlertAction(title: "Touch ID", style: .default) { (alert) in
+            let myContext = LAContext()
+            let myLocalizedReasonString = "Login with Touch ID"
+            
+            var authError: NSError?
+            if #available(iOS 8.0, macOS 10.12.1, *) {
+                if myContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &authError) {
+                    myContext.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: myLocalizedReasonString) { success, evaluateError in
+                        if success {
+                            DispatchQueue.main.async {
+                                blurVisualEffectView.removeFromSuperview()
+                            }
+                        } else {
+                            // User did not authenticate successfully, look at error and take appropriate action
+                        }
+                    }
+                } else {
+                    // Could not evaluate policy; look at authError and present an appropriate message to user
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+        }
+        
+        loginAlert.addAction(touchIDAction)
         loginAlert.addAction(loginAction)
         DispatchQueue.main.async {
             self.window?.rootViewController?.view.addSubview(blurVisualEffectView)
