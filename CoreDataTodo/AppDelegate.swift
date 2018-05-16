@@ -25,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         let masterNavigationController = splitViewController.viewControllers[0] as! UINavigationController
         let controller = masterNavigationController.topViewController as! MasterViewController
         controller.managedObjectContext = self.persistentContainer.viewContext
+        
+        let defaults = UserDefaults.standard
+        defaults.set("Enter a title", forKey: "title")
+        defaults.set("Enter a description", forKey: "todoDescription")
+        defaults.set("Enter a priority value", forKey: "priorityNumber")
+        
         return true
     }
 

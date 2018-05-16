@@ -45,13 +45,13 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         // If appropriate, configure the new managed object.
         let alert = UIAlertController(title: "New Todo", message: "Enter A New Todo", preferredStyle: .alert)
         alert.addTextField { (textField) in
-            textField.placeholder = "Enter title"
+            textField.placeholder = UserDefaults.standard.object(forKey: "title") as? String
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Enter description"
+            textField.placeholder = UserDefaults.standard.object(forKey: "todoDescription") as? String
         }
         alert.addTextField { (textField) in
-            textField.placeholder = "Enter priority number"
+            textField.placeholder = UserDefaults.standard.object(forKey: "priorityNumber") as? String
         }
         let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
             
@@ -78,6 +78,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
             }
         }
         
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(cancelAction)
         alert.addAction(saveAction)
         
         self.present(alert, animated: true, completion: nil)
