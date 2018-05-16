@@ -8,12 +8,13 @@
 
 import UIKit
 import CoreData
+import SAMKeychain
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
 
     var window: UIWindow?
-
+    var username: String!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -31,6 +32,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         defaults.set("Enter a description", forKey: "todoDescription")
         defaults.set("Enter a priority value", forKey: "priorityNumber")
         
+        let signUpAlert = UIAlertController(title: "Sign Up", message: "Enter username and password", preferredStyle: .alert)
+        
+        signUpAlert.addTextField { (textField) in
+            textField.placeholder = "Username"
+        }
+        signUpAlert.addTextField { (textField) in
+            textField.isSecureTextEntry = true
+            textField.placeholder = "Password"
+        }
+        
+        let signUpAction = UIAlertAction(title: "Sign Up", style: .default) { (action) in
+            if let usernameTextField = signUpAlert.textFields?[0], let usernameText = usernameTextField.text {
+                self.username = usernameText
+            }
+            if let passwordTextField = signUpAlert.textFields?[1], let passwordText = passwordTextField.text {
+                SAMKeychain.setPassword(passwordText, forService: "CoreDataTodo", account: self.username)
+            }
+        }
+        
+        signUpAlert.addAction(signUpAction)
+        DispatchQueue.main.async {
+            self.window?.rootViewController?.present(signUpAlert, animated: true, completion: nil)
+        }
         return true
     }
 

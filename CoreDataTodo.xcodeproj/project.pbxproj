@@ -14,9 +14,11 @@
 		7A49545120ACA90F00CE9234 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A49544F20ACA90F00CE9234 /* Main.storyboard */; };
 		7A49545320ACA91100CE9234 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A49545220ACA91100CE9234 /* Assets.xcassets */; };
 		7A49545620ACA91100CE9234 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A49545420ACA91100CE9234 /* LaunchScreen.storyboard */; };
+		B06EA30C5036897D5CB45213 /* Pods_CoreDataTodo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DAF10423253BF821BE124DF /* Pods_CoreDataTodo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6DAF10423253BF821BE124DF /* Pods_CoreDataTodo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoreDataTodo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A49544320ACA90F00CE9234 /* CoreDataTodo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataTodo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A49544620ACA90F00CE9234 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7A49544920ACA90F00CE9234 /* CoreDataTodo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTodo.xcdatamodel; sourceTree = "<group>"; };
@@ -26,6 +28,8 @@
 		7A49545220ACA91100CE9234 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A49545520ACA91100CE9234 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7A49545720ACA91100CE9234 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1BC116FEE4651D3E6B874EC /* Pods-CoreDataTodo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataTodo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataTodo/Pods-CoreDataTodo.debug.xcconfig"; sourceTree = "<group>"; };
+		E4A8AFEE945D8511F628F61D /* Pods-CoreDataTodo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoreDataTodo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoreDataTodo/Pods-CoreDataTodo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B06EA30C5036897D5CB45213 /* Pods_CoreDataTodo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001A4CECC6CE0230FF0B7A5A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6DAF10423253BF821BE124DF /* Pods_CoreDataTodo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5173B6C61196AF446FFCDE10 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A1BC116FEE4651D3E6B874EC /* Pods-CoreDataTodo.debug.xcconfig */,
+				E4A8AFEE945D8511F628F61D /* Pods-CoreDataTodo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7A49543A20ACA90F00CE9234 = {
 			isa = PBXGroup;
 			children = (
 				7A49544520ACA90F00CE9234 /* CoreDataTodo */,
 				7A49544420ACA90F00CE9234 /* Products */,
+				5173B6C61196AF446FFCDE10 /* Pods */,
+				001A4CECC6CE0230FF0B7A5A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +101,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A49545A20ACA91100CE9234 /* Build configuration list for PBXNativeTarget "CoreDataTodo" */;
 			buildPhases = (
+				E2F83A4EEE8776B1AE3356AF /* [CP] Check Pods Manifest.lock */,
 				7A49543F20ACA90F00CE9234 /* Sources */,
 				7A49544020ACA90F00CE9234 /* Frameworks */,
 				7A49544120ACA90F00CE9234 /* Resources */,
+				0096D015C7EF84348562BF2F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -135,6 +161,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0096D015C7EF84348562BF2F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CoreDataTodo/Pods-CoreDataTodo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/SAMKeychain/SAMKeychain.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SAMKeychain.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoreDataTodo/Pods-CoreDataTodo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E2F83A4EEE8776B1AE3356AF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoreDataTodo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7A49543F20ACA90F00CE9234 /* Sources */ = {
@@ -286,14 +351,12 @@
 		};
 		7A49545B20ACA91100CE9234 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1BC116FEE4651D3E6B874EC /* Pods-CoreDataTodo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CoreDataTodo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bvo.CoreDataTodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -303,14 +366,12 @@
 		};
 		7A49545C20ACA91100CE9234 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E4A8AFEE945D8511F628F61D /* Pods-CoreDataTodo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CoreDataTodo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bvo.CoreDataTodo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
