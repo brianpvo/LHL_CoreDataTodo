@@ -41,20 +41,46 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     @objc
     func insertNewObject(_ sender: Any) {
         let context = self.fetchedResultsController.managedObjectContext
-        let newTodo = ToDo(context: context)
-             
+        
         // If appropriate, configure the new managed object.
-        //newTodo.timestamp = Date()
-
-        // Save the context.
-        do {
-            try context.save()
-        } catch {
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-            let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        let alert = UIAlertController(title: "New Todo", message: "Enter A New Todo", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter title"
         }
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter description"
+        }
+        alert.addTextField { (textField) in
+            textField.placeholder = "Enter priority number"
+        }
+        let saveAction = UIAlertAction(title: "Save", style: .default) { (action) in
+            
+            let newTodo = ToDo(context: context)
+
+            if let titleTextField = alert.textFields?[0], let titleText = titleTextField.text {
+                newTodo.title = titleText
+            }
+            if let descriptionTextField = alert.textFields?[1], let descriptionText = descriptionTextField.text {
+                newTodo.todoDescription = descriptionText
+            }
+            if let priorityTextField = alert.textFields?[2], let priorityText = priorityTextField.text {
+                newTodo.priorityNumber = Int16(priorityText)!
+            }
+            
+            // Save the context.
+            do {
+                try context.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
+        }
+        
+        alert.addAction(saveAction)
+        
+        self.present(alert, animated: true, completion: nil)
     }
 
     // MARK: - Segues
@@ -111,8 +137,9 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
     }
 
     func configureCell(_ cell: UITableViewCell, withEvent event: ToDo) {
-        cell.textLabel!.text = "\(event.priorityNumber.description), \(event.title!.description)"
-        cell.detailTextLabel?.text = event.todoDescription!.description
+        guard let title = event.title, let todoDescription = event.todoDescription else { return }
+        cell.textLabel?.text = "\(event.priorityNumber.description), \(title.description)"
+        cell.detailTextLabel?.text = todoDescription.description
     }
 
     // MARK: - Fetched results controller
@@ -128,7 +155,7 @@ class MasterViewController: UITableViewController, NSFetchedResultsControllerDel
         fetchRequest.fetchBatchSize = 20
         
         // Edit the sort key as appropriate.
-        let sortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: false)
         
         fetchRequest.sortDescriptors = [sortDescriptor]
         
